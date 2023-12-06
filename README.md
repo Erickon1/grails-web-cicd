@@ -1,3 +1,13 @@
+## Custom 
+./gradlew bootRun
+./gradlew clean assemble
+
+docker build -t market .
+docker run -d -p 8080:8080 market
+docker stop CONTAINERID/NAME
+
+
+
 ## Grails 6.1.0 Documentation
 
 - [User Guide](https://docs.grails.org/6.1.0/guide/index.html)

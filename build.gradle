@@ -57,18 +57,21 @@ dependencies {
     runtimeOnly("org.apache.tomcat:tomcat-jdbc")
     runtimeOnly("org.fusesource.jansi:jansi:1.18")
     runtimeOnly("org.glassfish.web:el-impl:2.2.1-b05")
+
     testImplementation("io.micronaut:micronaut-inject-groovy")
     testImplementation("org.grails:grails-gorm-testing-support")
     testImplementation("org.grails:grails-web-testing-support")
+    testImplementation("org.spockframework:spock-core")
+    testImplementation("io.micronaut:micronaut-http-client")
+    /*
     testImplementation("org.grails.plugins:geb")
     testImplementation("org.seleniumhq.selenium:selenium-api:4.14.1")
     testImplementation("org.seleniumhq.selenium:selenium-remote-driver:4.14.1")
     testImplementation("org.seleniumhq.selenium:selenium-support:4.14.1")
-    testImplementation("org.spockframework:spock-core")
     testRuntimeOnly("org.seleniumhq.selenium:selenium-chrome-driver:4.14.1")
     testRuntimeOnly("org.seleniumhq.selenium:selenium-firefox-driver:4.14.1")
     testRuntimeOnly("org.seleniumhq.selenium:selenium-safari-driver:4.14.1")
-    testImplementation("io.micronaut:micronaut-http-client")
+    */
 
 }
 
@@ -82,18 +85,22 @@ java {
 
 tasks.withType(Test) {
     useJUnitPlatform()
+    /*
     systemProperty "geb.env", System.getProperty('geb.env')
     systemProperty "geb.build.reportsDir", reporting.file("geb/integrationTest")
     systemProperty 'webdriver.chrome.driver', "${System.getenv('CHROMEWEBDRIVER')}/chromedriver"
     systemProperty 'webdriver.gecko.driver', "${System.getenv('GECKOWEBDRIVER')}/geckodriver"
+    */
 }
 tasks.withType(War).configureEach { War war ->
     war.dependsOn compileGroovyPages
 }
 webdriverBinaries {
+  /*
     chromedriver '110.0.5481.77'
     geckodriver '0.32.2'
     edgedriver '110.0.1587.57'
+  */
 }
 assets {
     minifyJs = true
