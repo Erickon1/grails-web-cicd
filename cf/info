@@ -1,0 +1,19 @@
+https://mydeveloperplanet.com/2021/10/26/how-to-create-an-aws-cloudformation-fargate-template/
+
+Creating the task execution (ecsTaskExecutionRole) role
+If your account does not already have a task execution role, use the following steps to create the role.
+To create a task execution IAM role (AWS Management Console)
+Open the IAM console at https://console.aws.amazon.com/iam/.
+In the navigation pane, choose Roles, Create role.
+In the Trusted entity type section, choose AWS service, Elastic Container Service.
+For Use case, choose Elastic Container Service Task, and then choose Next.
+In the Attach permissions policy section, do the following:
+Search for AmazonECSTaskExecutionRolePolicy, then select the policy.
+Under Set permissions boundary - optional, choose Create role without a permissions boundary.
+Choose Next.
+Under Role details, do the following:
+For Role name, type ecsTaskExecutionRole.
+For Add tags (optional), specify any custom tags to associate with the policy .
+Choose Create role.
+
+create stack with new resources <task.yaml>
