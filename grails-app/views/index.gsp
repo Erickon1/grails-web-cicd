@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <title>ErickonDev</title>
 </head>
 <body>
 <content tag="nav">
@@ -45,7 +45,7 @@
 
 <div class="svg" role="presentation">
     <div class="grails-logo-container">
-        <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
+<!--        <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/> -->
     </div>
 </div>
 
