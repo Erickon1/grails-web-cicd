@@ -1,0 +1,31 @@
+version: 0.2
+
+env:
+  variables:
+    S3_BUCKET: "my-website-bucket"
+  exported-variables:
+    - REPOSITORY_URI
+    - AWS_ACCOUNT_ID
+phases:
+  pre_build:
+    commands:
+      #- ./gradlew clean test
+      - echo "aqui van los test"
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      #- $(aws ecr get-login --no-include-email --region us-east-1)
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - ./gradlew clean assemble
+  post_build:
+    commands:
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG 
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - printf '[{"name":"grails-market","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - cat imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
+      
